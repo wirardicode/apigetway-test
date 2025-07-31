@@ -50,7 +50,7 @@ function simpan() {
     };
 
     try {
-      const response = await fetch("https://ee13baa78912.ngrok-free.app/tunai", {
+      const response = await fetch("https://ee13baa78912.ngrok-free.app/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
