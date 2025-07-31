@@ -73,12 +73,13 @@
 
 //========================================================================================================
 // Redirct kalo terjadi token accpetment (di bawah) //koment aja jangan dihapus 
-const token = 'TOKEN_YANG_SALAH'; // sengaja salah untuk test
+const token = 'Z3T4WA1FUKU'; // sengaja salah untuk test
 
-function handleFetch(url, onSuccess, statusElementId) {
+function handleFetch(url, onSuccess, statusElementId, customHeaders = {}) {
     fetch(url, {
         headers: {
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + token,
+            ...customHeaders
         }
     })
         .then(res => {
@@ -104,31 +105,42 @@ function handleFetch(url, onSuccess, statusElementId) {
 }
 
 function thisTunai() {
-    handleFetch('https://ee13baa78912.ngrok-free.app/geting-total', data => {
-        const [row] = data.data;
-        const totalMasuk = row[0];
-        const totalKeluar = row[1];
-        const formatIDR = n => (n || 0).toLocaleString('id-ID');
+    handleFetch(
+        'https://ee13baa78912.ngrok-free.app/geting-total',
+        data => {
+            const [row] = data.data;
+            const totalMasuk = row[0];
+            const totalKeluar = row[1];
+            const formatIDR = n => (n || 0).toLocaleString('id-ID');
 
-        document.getElementById('totalMasuk').innerHTML = `: <q>${formatIDR(totalMasuk)}</q>`;
-        document.getElementById('totalKeluar').innerHTML = `: <q>${formatIDR(totalKeluar)}</q>`;
-        const status = document.getElementById('status');
-        status.textContent = "Data berhasil dimuat";
-        status.classList.replace("text-blue-600", "text-green-600");
-    },{headers: {
-        "ngrok-skip-browser-warning": "true",
-    }}, 'status');
+            document.getElementById('totalMasuk').innerHTML = `: <q>${formatIDR(totalMasuk)}</q>`;
+            document.getElementById('totalKeluar').innerHTML = `: <q>${formatIDR(totalKeluar)}</q>`;
+            const status = document.getElementById('status');
+            status.textContent = "Data berhasil dimuat";
+            status.classList.replace("text-blue-600", "text-green-600");
+        },
+        'status',
+        {
+            "ngrok-skip-browser-warning": "true"
+        }
+    );
 }
+
 
 function getDebit() {
-    handleFetch('https://c495b80dcbe5.ngrok-free.app/get-debit', data => {
-        const formatIDR = n => (n || 0).toLocaleString('id-ID');
-        document.getElementById('totalDebit').innerHTML = `: <q>${formatIDR(data.message)}</q>`;
-        const status = document.getElementById('statusDebit');
-        status.textContent = "Data debit berhasil dimuat";
-        status.classList.replace("text-blue-600", "text-green-600");
-    }, 'statusDebit');
+    handleFetch(
+        'https://ee13baa78912.ngrok-free.app/get-debit',
+        data => {
+            const formatIDR = n => (n || 0).toLocaleString('id-ID');
+            document.getElementById('totalDebit').innerHTML = `: <q>${formatIDR(data.message)}</q>`;
+            const status = document.getElementById('statusDebit');
+            status.textContent = "Data debit berhasil dimuat";
+            status.classList.replace("text-blue-600", "text-green-600");
+        },
+        'statusDebit'
+    );
 }
+
 
 thisTunai();
 getDebit();
