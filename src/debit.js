@@ -36,7 +36,7 @@
                 const inputVal = rawInput.replace(/\./g, "")
 
                 try {
-                    const response = await fetch('https://c495b80dcbe5.ngrok-free.app/debit', {
+                    const response = await fetch('https://ee13baa78912.ngrok-free.app/debit', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
