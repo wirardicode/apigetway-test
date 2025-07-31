@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dompet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+  <!-- Tombol Keluar -->
+  <button onclick="window.location.href='index.html'"
+    class="fixed top-4 left-4 z-50 bg-red-600 text-white font-bold text-xs w-8 h-8 flex items-center justify-center rounded-full shadow hover:bg-red-700 transition">
+    K
+  </button>
+
+  <div class="max-w-4xl mx-auto space-y-10">
+    <div id="pemasukan" class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-2xl font-semibold text-green-600 mb-4">Log Keuangan</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border border-gray-200">
+          <thead class="bg-blue-100 text-left">
+            <tr>
+              <th class="px-4 py-2 border">Pemasukan</th>
+              <th class="px-4 py-2 border">Pengeluaran</th>
+              <th class="px-4 py-2 border">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <!-- Data akan ditambahkan di sini -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/src/tunaiInfo.js"></script>
+</body>
+
+</html>

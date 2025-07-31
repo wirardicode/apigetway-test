@@ -1,0 +1,35 @@
+{
+  "name": "My dompet",
+  "short_name": "My dompet",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6f4e37",
+  "icons": [
+    {
+      "src": "zta.png",
+      "sizes": "146x146",
+      "type": "image/png"
+    },
+    {
+      "src": "zta.png",
+      "sizes": "146x146",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+  {
+    "src": "df.png",
+    "sizes": "484x340",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "df.png",
+    "sizes": "484x340",
+    "type": "image/png",
+    "form_factor": "narrow"
+  }
+]
+
+}

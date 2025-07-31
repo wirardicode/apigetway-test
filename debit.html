@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dompet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <button onclick="window.location.href='index.html'"
+        class="fixed top-4 left-4 z-50 bg-red-600 text-white font-bold text-xs w-8 h-8 flex items-center justify-center rounded-full shadow hover:bg-red-700 transition">
+        K
+    </button>
+
+    <div id="update" class="bg-white p-6 rounded-xl shadow-md space-y-4 w-full max-w-sm">
+
+        <!-- Input Update -->
+        <input type="text" placeholder="Update" id="inputUpdt" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+        <!-- Tombol Konfirmasi -->
+        <button type="submit" id="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Konfirmasi
+        </button>
+
+        <!-- Status message -->
+        <p id="statusMessage" class="text-sm text-center mt-2"></p>
+
+    </div>
+
+    <script src="/src/debit.js"></script>
+
+
+</body>
+
+</html>

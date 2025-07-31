@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dompet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 space-y-6">
+
+    <!-- Tombol kembali -->
+    <button onclick="window.location.href='index.html'"
+        class="fixed top-4 left-4 z-50 bg-red-600 text-white font-bold text-xs w-8 h-8 flex items-center justify-center rounded-full shadow hover:bg-red-700 transition">
+        K
+    </button>
+
+    <!-- Update Total Uang -->
+    <div id="totalUang" class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+        <table class="w-full text-sm text-left mb-2">
+            <tr>
+                <th class="text-gray-700 font-medium w-1/2">Total Pemasukan</th>
+                <td id="totalMasuk" class="text-gray-800">: <q>Loading...</q></td>
+            </tr>
+            <tr>
+                <th class="text-gray-700 font-medium w-1/2">Total Pengeluaran</th>
+                <td id="totalKeluar" class="text-gray-800">: <q>Loading...</q></td>
+            </tr>
+        </table>
+        <span class="text-gray-600 text-sm">Status:</span>
+        <p id="status" class="text-blue-600 font-semibold">Memuat data...</p>
+        <button onclick="window.location.href='chart.html'"
+            class="mt-4 w-10 h-10 rounded-full bg-blue-600 text-white text-xl font-bold flex items-center justify-center shadow-md hover:bg-blue-700 transition-all duration-200"
+            title="Lihat Grafik">
+           A+
+        </button>
+
+    </div>
+    <!-- Update Debit -->
+    <div id="debitUang" class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+        <table class="w-full text-sm text-left mb-2">
+            <tr>
+                <th class="text-gray-700 font-medium w-1/2">Pembaruan Debit</th>
+                <td id="totalDebit" class="text-gray-800">: <q>Loading...</q></td>
+            </tr>
+        </table>
+        <span class="text-gray-600 text-sm">Status:</span>
+        <p id="statusDebit" class="text-blue-600 font-semibold">Memuat data...</p>
+    </div>
+
+    <script src="/src/info.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grafik Keuangan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <!-- Tombol Kembali -->
+  <!-- Tombol kembali -->
+    <button onclick="window.location.href='index.html'"
+        class="fixed top-4 left-4 z-50 bg-red-600 text-white font-bold text-xs w-8 h-8 flex items-center justify-center rounded-full shadow hover:bg-red-700 transition">
+        K
+    </button>
+
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow space-y-6">
+    <h2 class="text-2xl font-semibold text-center text-gray-800">Flow Keuangan (Tunai)</h2>
+
+    <!-- Tempat Grafik -->
+    <div id="chart" class="w-full h-64"></div>
+
+    <!-- Ringkasan Persentase -->
+    <div id="summary" class="text-center text-lg text-gray-700 mt-4">
+      Memuat data...
+    </div>
+  </div>
+
+  <script>
+    async function loadChartData() {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/tunai');
+        const result = await response.json();
+        const data = result.data || [];
+
+        let totalPemasukan = 0;
+        let totalPengeluaran = 0;
+
+        data.forEach(item => {
+          const pemasukan = parseFloat(item[0]) || 0;
+          const pengeluaran = parseFloat(item[1]) || 0;
+          totalPemasukan += pemasukan;
+          totalPengeluaran += pengeluaran;
+        });
+
+        // Hitung selisih dan persentase
+        const selisih = totalPemasukan - totalPengeluaran;
+        const persen = totalPengeluaran === 0
+          ? 100
+          : ((selisih / totalPengeluaran) * 100).toFixed(2);
+
+        // Tampilkan ringkasan
+        document.getElementById('summary').innerText = `
+          Total Pemasukan: Rp ${formatRupiah(totalPemasukan)}
+          \nTotal Pengeluaran: Rp ${formatRupiah(totalPengeluaran)}
+          \nSelisih: Rp ${formatRupiah(selisih)}
+          \nPemasukan ${selisih >= 0 ? 'lebih besar' : 'lebih kecil'} ${Math.abs(persen)}% dibanding pengeluaran.
+        `;
+
+        // Konfigurasi chart
+        const options = {
+          chart: {
+            type: 'bar',
+            height: 350
+          },
+          series: [{
+            name: 'Jumlah (Rp)',
+            data: [totalPemasukan, totalPengeluaran]
+          }],
+          xaxis: {
+            categories: ['Pemasukan', 'Pengeluaran']
+          },
+          colors: ['#22c55e', '#ef4444'],
+          dataLabels: {
+            formatter: function (val) {
+              return "Rp " + formatRupiah(val);
+            }
+          }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+      } catch (error) {
+        document.getElementById('summary').innerText = 'Gagal mengambil data.';
+        console.error('Gagal ambil data:', error);
+      }
+    }
+
+    function formatRupiah(angka) {
+      const numberString = angka.toString().replace(/[^,\d]/g, '');
+      const split = numberString.split(',');
+      const sisa = split[0].length % 3;
+      let rupiah = split[0].substr(0, sisa);
+      const ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+      if (ribuan) {
+        const separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+      rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+      return rupiah ? rupiah : '0';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadChartData);
+  </script>
+</body>
+</html>
