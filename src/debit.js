@@ -39,7 +39,8 @@
                     const response = await fetch('https://c495b80dcbe5.ngrok-free.app/debit', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                                "ngrok-skip-browser-warning": "true"
                         },
                         body: JSON.stringify({
                             UpdateDebit: inputVal
