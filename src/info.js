@@ -137,7 +137,10 @@ function getDebit() {
             status.textContent = "Data debit berhasil dimuat";
             status.classList.replace("text-blue-600", "text-green-600");
         },
-        'statusDebit'
+        'statusDebit',
+         {
+            "ngrok-skip-browser-warning": "true"
+        }
     );
 }
 
