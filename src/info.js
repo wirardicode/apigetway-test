@@ -104,7 +104,7 @@ function handleFetch(url, onSuccess, statusElementId) {
 }
 
 function thisTunai() {
-    handleFetch('https://c495b80dcbe5.ngrok-free.app/geting-total', data => {
+    handleFetch('https://ee13baa78912.ngrok-free.app/geting-total', data => {
         const [row] = data.data;
         const totalMasuk = row[0];
         const totalKeluar = row[1];
@@ -115,7 +115,9 @@ function thisTunai() {
         const status = document.getElementById('status');
         status.textContent = "Data berhasil dimuat";
         status.classList.replace("text-blue-600", "text-green-600");
-    }, 'status');
+    },{headers: {
+        "ngrok-skip-browser-warning": "true",
+    }}, 'status');
 }
 
 function getDebit() {
