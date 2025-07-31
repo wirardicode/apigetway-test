@@ -1,4 +1,4 @@
-//const token = 'Z3T4WA1FUKU' // Token 
+//const token = 'YOUR_TOKEN_HERE' // Token 
 //        function thisTunai() {
 //            const apiUrl = 'https://c495b80dcbe5.ngrok-free.app/geting-total'
 //
@@ -73,7 +73,7 @@
 
 //========================================================================================================
 // Redirct kalo terjadi token accpetment (di bawah) //koment aja jangan dihapus 
-const token = 'Z3T4WA1FUKU'; // sengaja salah untuk test
+const token = 'YOUR_TOKEN_HERE'; // sengaja salah untuk test
 
 function handleFetch(url, onSuccess, statusElementId, customHeaders = {}) {
     fetch(url, {
